@@ -12,6 +12,8 @@ const subscriberSchema=new mongoose.Schema({
         default: false
     },
 
+    verificationToken: String,
+
     subscribedAt: {
         type: Date,
         default: Date.now
