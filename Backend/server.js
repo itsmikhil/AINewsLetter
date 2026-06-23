@@ -15,7 +15,6 @@ app.use(express.json());
 
 await connectDB();
 
-
 app.get("/", (req, res) => {
     res.send(`Server is listening at ${PORT}`);
 });
