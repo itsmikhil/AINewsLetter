@@ -4,6 +4,7 @@ import dotenv from "dotenv"
 import connectDB from './config/db.js';
 import articleRoute from './routes/articleRoute.js';
 import { generateWeeklyNewsletter } from './services/newsletterService.js';
+import newsletterRouter from './routes/newletterRoute.js';
 
 dotenv.config();
 
@@ -22,6 +23,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/article",articleRoute)
+app.use("/api/newsletter",newsletterRouter)
 
 app.listen(PORT,()=>{
     console.log(`Server is listening at ${PORT}`)
