@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
-import { getNewsletters } from "@/lib/mock-api";
+import { getNewsletters } from "@/services/newsletterService";
 import { NewsletterCard, NewsletterCardSkeleton } from "@/components/site/NewsletterCard";
 import { SubscribeBlock } from "@/components/site/SubscribeBlock";
 
@@ -49,7 +49,7 @@ function NewslettersPage() {
         <div className="container-prose space-y-4">
           {isLoading
             ? Array.from({ length: 3 }).map((_, i) => <NewsletterCardSkeleton key={i} />)
-            : data?.map((n) => <NewsletterCard key={n.id} newsletter={n} />)}
+            : data?.map((n) => <NewsletterCard key={n._id} newsletter={n} />)}
         </div>
       </section>
 

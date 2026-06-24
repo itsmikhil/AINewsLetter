@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
-import { getArticles, getNewsletters, getStats } from "@/lib/mock-api";
+import { getArticles } from "@/services/articleService";
+import { getNewsletters } from "@/services/newsletterService";
+import { getStats } from "@/services/statsService";
 import { SubscribeForm } from "@/components/site/SubscribeForm";
 import { SubscribeBlock } from "@/components/site/SubscribeBlock";
 import { Section } from "@/components/site/Section";
@@ -20,8 +22,7 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "AI Weekly Digest" },
       {
         property: "og:description",
-        content:
-          "A weekly briefing on artificial intelligence. Signal, not noise.",
+        content: "A weekly briefing on artificial intelligence. Signal, not noise.",
       },
     ],
   }),
@@ -67,9 +68,8 @@ function Hero() {
             </span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-            Every week, AI Weekly Digest analyzes hundreds of AI updates,
-            selects the stories that matter most, and delivers concise insights
-            directly to your inbox.
+            Every week, AI Weekly Digest analyzes hundreds of AI updates, selects the stories that
+            matter most, and delivers concise insights directly to your inbox.
           </p>
 
           <div className="mt-9">
@@ -114,9 +114,7 @@ function HeroVisual() {
             <span className="text-[10px] font-medium uppercase tracking-[0.18em] text-muted-foreground">
               This week's signal
             </span>
-            <span className="font-mono text-[10px] text-muted-foreground">
-              812 updates
-            </span>
+            <span className="font-mono text-[10px] text-muted-foreground">812 updates</span>
           </div>
           <ul className="space-y-2">
             {items.map((i, idx) => (
@@ -168,21 +166,22 @@ function HeroVisual() {
             <Sparkles className="h-4 w-4 text-primary" />
           </div>
           <ul className="space-y-3">
-            {items.filter((i) => i.picked).slice(0, 4).map((i, idx) => (
-              <li key={idx} className="text-xs">
-                <div className="flex items-center gap-2">
-                  <span className="rounded-sm bg-primary/15 px-1.5 py-0.5 text-[9px] font-medium uppercase tracking-wider text-primary">
-                    {i.src}
-                  </span>
-                  <span className="font-mono text-[10px] text-muted-foreground">
-                    {i.tag}
-                  </span>
-                </div>
-                <div className="mt-1.5 font-display text-[13px] font-medium leading-snug text-foreground">
-                  {i.title}
-                </div>
-              </li>
-            ))}
+            {items
+              .filter((i) => i.picked)
+              .slice(0, 4)
+              .map((i, idx) => (
+                <li key={idx} className="text-xs">
+                  <div className="flex items-center gap-2">
+                    <span className="rounded-sm bg-primary/15 px-1.5 py-0.5 text-[9px] font-medium uppercase tracking-wider text-primary">
+                      {i.src}
+                    </span>
+                    <span className="font-mono text-[10px] text-muted-foreground">{i.tag}</span>
+                  </div>
+                  <div className="mt-1.5 font-display text-[13px] font-medium leading-snug text-foreground">
+                    {i.title}
+                  </div>
+                </li>
+              ))}
           </ul>
         </div>
       </div>
@@ -261,13 +260,12 @@ function AboutSection() {
         </div>
         <div className="space-y-6 text-base leading-relaxed text-muted-foreground md:col-span-7 md:text-[17px]">
           <p>
-            Every week brings new models, research papers, product launches,
-            funding announcements, and industry developments. Keeping track is a
-            full-time job.
+            Every week brings new models, research papers, product launches, funding announcements,
+            and industry developments. Keeping track is a full-time job.
           </p>
           <p className="text-foreground">
-            AI Weekly Digest filters through the noise and delivers only the
-            developments that genuinely matter.
+            AI Weekly Digest filters through the noise and delivers only the developments that
+            genuinely matter.
           </p>
           <ul className="grid grid-cols-1 gap-3 pt-2 sm:grid-cols-3">
             {["No hype.", "No clickbait.", "No endless scrolling."].map((t) => (
@@ -280,8 +278,8 @@ function AboutSection() {
             ))}
           </ul>
           <p className="pt-2">
-            Just the most important AI stories, explained clearly — with
-            context on why each one matters.
+            Just the most important AI stories, explained clearly — with context on why each one
+            matters.
           </p>
         </div>
       </div>
@@ -302,7 +300,7 @@ function LatestArticles() {
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
         {isLoading
           ? Array.from({ length: 6 }).map((_, i) => <ArticleCardSkeleton key={i} />)
-          : items?.map((a) => <ArticleCard key={a.id} article={a} />)}
+          : items?.map((a) => <ArticleCard key={a._id} article={a} />)}
       </div>
       <div className="mt-10 text-center">
         <Link
@@ -333,7 +331,7 @@ function LatestNewsletters() {
       <div className="space-y-4">
         {isLoading
           ? Array.from({ length: 2 }).map((_, i) => <NewsletterCardSkeleton key={i} />)
-          : items?.map((n) => <NewsletterCard key={n.id} newsletter={n} />)}
+          : items?.map((n) => <NewsletterCard key={n._id} newsletter={n} />)}
       </div>
       <div className="mt-10 text-center">
         <Link

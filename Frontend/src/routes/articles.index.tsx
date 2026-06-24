@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
-import { getArticles } from "@/lib/mock-api";
+import { getArticles } from "@/services/articleService";
 import { ArticleCard, ArticleCardSkeleton } from "@/components/site/ArticleCard";
 import { SubscribeBlock } from "@/components/site/SubscribeBlock";
 
@@ -48,7 +48,7 @@ function ArticlesPage() {
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
             {isLoading
               ? Array.from({ length: 9 }).map((_, i) => <ArticleCardSkeleton key={i} />)
-              : data?.map((a) => <ArticleCard key={a.id} article={a} />)}
+              : data?.map((a) => <ArticleCard key={a._id} article={a} />)}
           </div>
         </div>
       </section>

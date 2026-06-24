@@ -1,12 +1,12 @@
 import { Link } from "@tanstack/react-router";
-import type { Article } from "@/lib/mock-api";
+import type { Article } from "@/services/articleService";
 import { ArrowUpRight } from "lucide-react";
 
 export function ArticleCard({ article }: { article: Article }) {
   return (
     <Link
       to="/articles/$id"
-      params={{ id: article.id }}
+      params={{ id: article._id }}
       className="group flex h-full flex-col rounded-xl border border-border bg-card p-6 transition-all hover:border-primary/40 hover:bg-card/80"
     >
       <div className="flex items-center justify-between gap-3">

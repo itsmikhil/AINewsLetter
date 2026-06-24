@@ -10,7 +10,7 @@ export type Article = {
 };
 
 export const getArticles = async (): Promise<Article[]> => {
-  const response = await api.get("/article");
+  const response = await api.get("/article/all");
 
   return response.data.articles;
 };
@@ -18,7 +18,7 @@ export const getArticles = async (): Promise<Article[]> => {
 export const getArticle = async (
   id: string
 ): Promise<Article> => {
-  const response = await api.get(`/article/${id}`);
+  const response = await api.get(`/article/get/${id}`);
 
   return response.data.article;
 };
