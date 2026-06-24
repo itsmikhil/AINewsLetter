@@ -14,6 +14,11 @@ const subscriberSchema=new mongoose.Schema({
 
     verificationToken: String,
 
+    unsubscribeToken: {
+        type: String,
+        required: true
+    },
+
     subscribedAt: {
         type: Date,
         default: Date.now

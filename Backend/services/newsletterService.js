@@ -131,7 +131,7 @@ const deliverLatestNewsletter = async () => {
 
   for (const subscriber of subscribers) {
     try {
-      await sendNewsletterEmail(subscriber.email, newsletter);
+      await sendNewsletterEmail(subscriber.email, newsletter,subscriber.unsubscribeToken);
 
       successCount++;
     } catch (error) {

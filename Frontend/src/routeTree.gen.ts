@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as VerifiedRouteImport } from './routes/verified'
+import { Route as UnsubscribeRouteImport } from './routes/unsubscribe'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as NewslettersIndexRouteImport } from './routes/newsletters.index'
 import { Route as ArticlesIndexRouteImport } from './routes/articles.index'
@@ -19,6 +20,11 @@ import { Route as ArticlesIdRouteImport } from './routes/articles.$id'
 const VerifiedRoute = VerifiedRouteImport.update({
   id: '/verified',
   path: '/verified',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UnsubscribeRoute = UnsubscribeRouteImport.update({
+  id: '/unsubscribe',
+  path: '/unsubscribe',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -49,6 +55,7 @@ const ArticlesIdRoute = ArticlesIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/unsubscribe': typeof UnsubscribeRoute
   '/verified': typeof VerifiedRoute
   '/articles/$id': typeof ArticlesIdRoute
   '/newsletters/$id': typeof NewslettersIdRoute
@@ -57,6 +64,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/unsubscribe': typeof UnsubscribeRoute
   '/verified': typeof VerifiedRoute
   '/articles/$id': typeof ArticlesIdRoute
   '/newsletters/$id': typeof NewslettersIdRoute
@@ -66,6 +74,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/unsubscribe': typeof UnsubscribeRoute
   '/verified': typeof VerifiedRoute
   '/articles/$id': typeof ArticlesIdRoute
   '/newsletters/$id': typeof NewslettersIdRoute
@@ -76,6 +85,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/unsubscribe'
     | '/verified'
     | '/articles/$id'
     | '/newsletters/$id'
@@ -84,6 +94,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/unsubscribe'
     | '/verified'
     | '/articles/$id'
     | '/newsletters/$id'
@@ -92,6 +103,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/unsubscribe'
     | '/verified'
     | '/articles/$id'
     | '/newsletters/$id'
@@ -101,6 +113,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  UnsubscribeRoute: typeof UnsubscribeRoute
   VerifiedRoute: typeof VerifiedRoute
   ArticlesIdRoute: typeof ArticlesIdRoute
   NewslettersIdRoute: typeof NewslettersIdRoute
@@ -115,6 +128,13 @@ declare module '@tanstack/react-router' {
       path: '/verified'
       fullPath: '/verified'
       preLoaderRoute: typeof VerifiedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/unsubscribe': {
+      id: '/unsubscribe'
+      path: '/unsubscribe'
+      fullPath: '/unsubscribe'
+      preLoaderRoute: typeof UnsubscribeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -157,6 +177,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  UnsubscribeRoute: UnsubscribeRoute,
   VerifiedRoute: VerifiedRoute,
   ArticlesIdRoute: ArticlesIdRoute,
   NewslettersIdRoute: NewslettersIdRoute,

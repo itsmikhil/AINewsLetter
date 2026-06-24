@@ -16,7 +16,12 @@ const subscribeUser = async (req, res) => {
         .send({ success: false, message: "Enter a valid email id" });
     }
     const verificationToken = generateVerificationToken();
-    const result = await subscriberModel.create({ email, verificationToken });
+    const unsubscribeToken = generateVerificationToken();
+    const result = await subscriberModel.create({
+      email,
+      verificationToken,
+      unsubscribeToken,
+    });
     await sendVerificationEmail(
       email,
       process.env.BACKEND_URL + `/api/subscriber/verify/${verificationToken}`,
@@ -90,4 +95,28 @@ const getSubscriberCount = async (req, res) => {
   }
 };
 
-export { subscribeUser, verifyUser, getSubscriberCount };
+const unsubscribeUser = async (req, res) => {
+  try {
+    const { token } = req.params;
+
+    const subscriber = await subscriberModel.findOneAndDelete({
+      unsubscribeToken: token,
+    });
+
+    if (!subscriber) {
+      return res.redirect(
+        `${process.env.FRONTEND_URL}/unsubscribe?status=failed`,
+      );
+    }
+
+    return res.redirect(
+      `${process.env.FRONTEND_URL}/unsubscribe?status=success`,
+    );
+  } catch (error) {
+    return res.redirect(
+      `${process.env.FRONTEND_URL}/unsubscribe?status=failed`,
+    );
+  }
+};
+
+export { subscribeUser, verifyUser, getSubscriberCount,unsubscribeUser };
