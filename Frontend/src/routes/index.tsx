@@ -197,8 +197,8 @@ function StatsSection() {
 
   const items = [
     { label: "Articles curated", value: data?.totalArticles, suffix: "+" },
-    { label: "Weekly digests published", value: data?.weeklyDigests, suffix: "" },
-    { label: "Active subscribers", value: data?.activeSubscribers, suffix: "+" },
+    { label: "Weekly digests published", value: data?.totalNewsletters, suffix: "" },
+    { label: "Active subscribers", value: data?.totalSubscribers, suffix: "+" },
   ];
 
   return (

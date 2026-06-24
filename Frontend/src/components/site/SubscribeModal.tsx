@@ -58,13 +58,6 @@ export function SubscribeModal({ open, onClose, email }: Props) {
           </p>
 
           <div className="mt-7 flex flex-col gap-2">
-            <Link
-              to="/verified"
-              className="inline-flex h-11 w-full items-center justify-center rounded-md bg-primary text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-              onClick={onClose}
-            >
-              Preview confirmation page
-            </Link>
             <button
               onClick={onClose}
               className="inline-flex h-10 w-full items-center justify-center rounded-md text-sm text-muted-foreground transition-colors hover:text-foreground"

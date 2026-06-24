@@ -1,7 +1,8 @@
 import { useState, type FormEvent } from "react";
-import { subscribeEmail } from "@/lib/mock-api";
+import { subscribeUser } from "@/services/subscriberService";
 import { SubscribeModal } from "./SubscribeModal";
 import { ArrowRight, Loader2 } from "lucide-react";
+import axios from "axios";
 
 interface Props {
   variant?: "default" | "inverse";
@@ -20,12 +21,16 @@ export function SubscribeForm({ variant = "default", size = "md" }: Props) {
     setError(null);
     setLoading(true);
     try {
-      await subscribeEmail(email);
+      const result = await subscribeUser(email);
       setSubmittedEmail(email);
       setEmail("");
       setOpen(true);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Something went wrong.");
+      if (axios.isAxiosError(err)) {
+        setError(err.response?.data?.message || "Something went wrong.");
+      } else {
+        setError("Something went wrong.");
+      }
     } finally {
       setLoading(false);
     }
@@ -38,11 +43,10 @@ export function SubscribeForm({ variant = "default", size = "md" }: Props) {
 
   return (
     <>
-      <form
-        onSubmit={onSubmit}
-        className="mx-auto flex w-full max-w-xl flex-col gap-2 sm:flex-row"
-      >
-        <label htmlFor={`email-${size}`} className="sr-only">Email address</label>
+      <form onSubmit={onSubmit} className="mx-auto flex w-full max-w-xl flex-col gap-2 sm:flex-row">
+        <label htmlFor={`email-${size}`} className="sr-only">
+          Email address
+        </label>
         <input
           id={`email-${size}`}
           type="email"
@@ -67,9 +71,7 @@ export function SubscribeForm({ variant = "default", size = "md" }: Props) {
           )}
         </button>
       </form>
-      {error && (
-        <p className="mt-2 text-center text-sm text-destructive">{error}</p>
-      )}
+      {error && <p className="mt-2 text-center text-sm text-destructive">{error}</p>}
       <p className="mt-3 text-center text-xs text-muted-foreground">
         Free forever. One email per week. Unsubscribe anytime.
       </p>
