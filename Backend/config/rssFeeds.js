@@ -15,8 +15,4 @@ export const RSS_FEEDS = [
     source: "Hugging Face",
     url: "https://huggingface.co/blog/feed.xml",
   },
-  {
-    source: "VentureBeat AI",
-    url: "https://venturebeat.com/ai/feed/",
-  },
 ];

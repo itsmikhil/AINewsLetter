@@ -1,5 +1,6 @@
 import crypto from "crypto";
-import subscriberModel from "../models/subscriber";
+import subscriberModel from "../models/subscriber.js";
+import { sendVerificationEmail } from "../services/emailService.js";
 
 const generateVerificationToken=()=>{
     return crypto.randomBytes(32).toString("hex");
@@ -7,35 +8,39 @@ const generateVerificationToken=()=>{
 
 const subscribeUser=async(req,res)=>{
     try {
-        const {email} = req.body;
+        let {email} = req.body;
         email=email?.trim();
         if(!email || email.length==0){
             return res.status(400).send({success:false,message:"Enter a valid email id"})
         }
         const verificationToken=generateVerificationToken();
         const result=await subscriberModel.create({email,verificationToken});
-        res.status(200).json({success:true,message:"User registered successfully"});
+        await sendVerificationEmail(email,process.env.BACKEND_URL+`/api/subscriber/verify/${verificationToken}`)
+        res.status(200).json({
+            success:true,
+            message:"We've sent a verification email. Please check your inbox to complete your subscription."
+        });
     } catch (error) {
-        if(error.code === 11000) return res.status(409).json({success:false,message:"Email id already registered"})
+        if(error.code === 11000) return res.status(409).json({success:false,message:"This email is already subscribed or pending verification."})
         res.status(500).json({success:false,message:error.message});
     }
 }
 
 const verifyUser=async(req,res)=>{
     try {
-        const {verificationToken} = req.params;
+        let {verificationToken} = req.params;
         verificationToken=verificationToken?.trim();
         if(!verificationToken || verificationToken.length===0){
-            return res.status(400).send({success:false,message:"Invalid Request"})
+            return res.status(400).send({success:false,message:"Invalid verification request."})
         }
-        const result=await subscriberModel.findOneAndUpdate({verificationToken},{isVerified:true,verificationToken=null});
+        const result=await subscriberModel.findOneAndUpdate({verificationToken},{isVerified:true,verificationToken:null});
         if(!result){
             return res.status(404).json({
                 success:false,
-                message:"Invalid verification token"
+                 message:"This verification link is invalid or has expired."
             });
         }
-        res.status(200).json({success:true,message:"Email Id verified successfully"});
+        res.status(200).json({success:true,message:"Your email has been verified successfully. Welcome to AI Weekly Digest!"});
     } catch (error) {
         res.status(500).json({success:false,message:error.message});
     }
@@ -64,4 +69,4 @@ const getSubscriberCount = async (req,res)=>{
     }
 }
 
-export {registerUser,verifyUser,getSubscriberCount}
+export {subscribeUser,verifyUser,getSubscriberCount}

@@ -49,8 +49,6 @@ export const fetchAndStoreAllArticles=async()=>{
                 try {
 
                     const mappedArticle=mapRSSItem(article,el.source);
-                    // remove this
-                    console.log(mappedArticle.publishedAt)
 
                     const result=await storeArticle(mappedArticle);
                     if(result === "DUPLICATE"){
@@ -69,7 +67,7 @@ export const fetchAndStoreAllArticles=async()=>{
             console.log(error.message);
         }
     }
-    console.log(stored,skipped,failed)
+    console.log(`Stored : ${stored} Skipped:${skipped} Failed:${failed}`)
     return {
         stored,
         skipped,

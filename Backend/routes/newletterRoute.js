@@ -3,7 +3,8 @@ import express from "express";
 import {
     getAllNewsletters,
     getLatestNewsletter,
-    getNewsletterById
+    getNewsletterById,
+    sendLatestNewsletter
 } from "../controllers/newsletterController.js";
 
 const newsletterRouter = express.Router();
@@ -21,6 +22,11 @@ newsletterRouter.get(
 newsletterRouter.get(
     "/:id",
     getNewsletterById
+);
+
+newsletterRouter.post(
+    "/send",
+    sendLatestNewsletter
 );
 
 export default newsletterRouter;
