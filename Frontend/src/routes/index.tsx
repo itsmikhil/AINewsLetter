@@ -33,8 +33,8 @@ function HomePage() {
   return (
     <>
       <Hero />
-      <StatsSection />
       <AboutSection />
+      <StatsSection />
       <LatestArticles />
       <LatestNewsletters />
       <SubscribeBlock id="subscribe" />
@@ -86,109 +86,8 @@ function Hero() {
             </Link>
           </div>
         </div>
-
-        <HeroVisual />
       </div>
     </section>
-  );
-}
-
-function HeroVisual() {
-  const items = [
-    { src: "OpenAI", tag: "Models", title: "GPT-5 long-horizon reasoning", picked: true },
-    { src: "Anthropic", tag: "Safety", title: "Claude Constitution v3", picked: true },
-    { src: "TechCrunch", tag: "Rumor", title: "Speculation about Apple LLM", picked: false },
-    { src: "DeepMind", tag: "Research", title: "Gemini 3 technical report", picked: true },
-    { src: "Twitter", tag: "Hot take", title: "Why X kills Y, a thread", picked: false },
-    { src: "VentureBeat", tag: "Funding", title: "Mistral raises $1.2B", picked: true },
-    { src: "Newsletter", tag: "Opinion", title: "AI bubble 2.0?", picked: false },
-    { src: "Meta", tag: "Open", title: "Llama 4 Scout for edge", picked: true },
-  ];
-
-  return (
-    <div className="relative mx-auto mt-16 max-w-5xl">
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-[1fr_auto_1fr] md:items-stretch">
-        {/* Left: noise */}
-        <div className="rounded-xl border border-border bg-card/60 p-4">
-          <div className="mb-3 flex items-center justify-between">
-            <span className="text-[10px] font-medium uppercase tracking-[0.18em] text-muted-foreground">
-              This week's signal
-            </span>
-            <span className="font-mono text-[10px] text-muted-foreground">812 updates</span>
-          </div>
-          <ul className="space-y-2">
-            {items.map((i, idx) => (
-              <li
-                key={idx}
-                className={`flex items-center gap-2.5 rounded-md border px-3 py-2 text-xs transition-opacity ${
-                  i.picked
-                    ? "border-border bg-background"
-                    : "border-border/60 bg-background/40 opacity-50"
-                }`}
-              >
-                <span className="font-mono text-[10px] text-muted-foreground">
-                  {String(idx + 1).padStart(2, "0")}
-                </span>
-                <span className="truncate text-foreground/80">{i.title}</span>
-                <span className="ml-auto rounded-sm bg-secondary px-1.5 py-0.5 text-[9px] uppercase tracking-wider text-muted-foreground">
-                  {i.src}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Center: filter */}
-        <div className="hidden flex-col items-center justify-center px-6 md:flex">
-          <div className="flex h-full flex-col items-center justify-center">
-            <div className="h-16 w-px bg-gradient-to-b from-transparent to-border" />
-            <div className="grid h-14 w-14 place-items-center rounded-full border border-primary/40 bg-card text-primary">
-              <Filter className="h-5 w-5" />
-            </div>
-            <div className="mt-3 text-[10px] font-medium uppercase tracking-[0.22em] text-primary">
-              Curated
-            </div>
-            <div className="mt-3 h-16 w-px bg-gradient-to-t from-transparent to-border" />
-          </div>
-        </div>
-
-        {/* Right: digest */}
-        <div className="rounded-xl border border-primary/30 bg-gradient-to-b from-card to-card/60 p-5 shadow-[0_0_0_1px_rgba(59,130,246,0.08),0_20px_60px_-20px_rgba(59,130,246,0.3)]">
-          <div className="mb-4 flex items-center justify-between border-b border-border pb-3">
-            <div>
-              <div className="font-display text-sm font-semibold tracking-tight">
-                AI Weekly Digest
-              </div>
-              <div className="font-mono text-[10px] text-muted-foreground">
-                Issue 96 · 5 min read
-              </div>
-            </div>
-            <Sparkles className="h-4 w-4 text-primary" />
-          </div>
-          <ul className="space-y-3">
-            {items
-              .filter((i) => i.picked)
-              .slice(0, 4)
-              .map((i, idx) => (
-                <li key={idx} className="text-xs">
-                  <div className="flex items-center gap-2">
-                    <span className="rounded-sm bg-primary/15 px-1.5 py-0.5 text-[9px] font-medium uppercase tracking-wider text-primary">
-                      {i.src}
-                    </span>
-                    <span className="font-mono text-[10px] text-muted-foreground">{i.tag}</span>
-                  </div>
-                  <div className="mt-1.5 font-display text-[13px] font-medium leading-snug text-foreground">
-                    {i.title}
-                  </div>
-                </li>
-              ))}
-          </ul>
-        </div>
-      </div>
-      <div className="mt-6 text-center text-xs text-muted-foreground">
-        From 812 weekly updates → 6 stories that matter
-      </div>
-    </div>
   );
 }
 
@@ -244,8 +143,8 @@ function StatsSection() {
 
 function AboutSection() {
   return (
-    <section id="about" className="border-b border-border py-24">
-      <div className="container-prose grid gap-12 md:grid-cols-12">
+    <section id="about" className="border-b border-border h-[90vh] flex items-center">
+      <div className="container-prose grid gap-12 md:grid-cols-12 w-full">
         <div className="md:col-span-5">
           <p className="text-xs font-medium uppercase tracking-[0.22em] text-primary">
             Our approach

@@ -23,10 +23,10 @@ export function SubscribeBlock({ id, compact = false }: Props) {
               The briefing
             </p>
             <h2 className="mt-3 font-display text-3xl font-semibold leading-tight tracking-tight md:text-4xl">
-              Join {`18,000+`} professionals reading AI Weekly Digest.
+              Join professionals reading AI Weekly Digest.
             </h2>
             <p className="mx-auto mt-4 max-w-lg text-base leading-relaxed text-muted-foreground">
-              One concise email every Tuesday. The stories that actually moved
+              One concise email every Sunday. The stories that actually moved
               the field — explained clearly, with context.
             </p>
             <div className="mt-8">
