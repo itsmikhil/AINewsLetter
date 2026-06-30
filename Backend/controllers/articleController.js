@@ -1,4 +1,5 @@
 import articleModel from "../models/articles.js";
+import { fetchAndStoreAllArticles } from "../services/rssService.js";
 
 
 const getAllArticles=async(req,res)=>{
@@ -24,5 +25,27 @@ const getArticle=async(req,res)=>{
     }
 }
 
+const fetchArticlesCron = async (req, res) => {
+  try {
+    console.log("Starting article collection...");
 
-export {getAllArticles,getArticle}
+    await fetchAndStoreAllArticles();
+
+    console.log("Article collection completed.");
+
+    return res.status(200).json({
+      success: true,
+      message: "Articles fetched successfully.",
+    });
+  } catch (error) {
+    console.error(error);
+
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+
+export {getAllArticles,getArticle,fetchArticlesCron}

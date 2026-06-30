@@ -95,3 +95,28 @@ export const sendLatestNewsletter = async (req, res) => {
     });
   }
 };
+
+export const runNewsletterPipeline = async (req, res) => {
+  try {
+    console.log("Starting weekly newsletter pipeline...");
+
+    await generateWeeklyNewsletter();
+
+    await deliverLatestNewsletter();
+
+    console.log("Newsletter pipeline completed.");
+
+    return res.status(200).json({
+      success: true,
+      message: "Newsletter pipeline completed successfully.",
+    });
+  } catch (error) {
+    console.error("Newsletter pipeline failed:");
+    console.error(error);
+
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};

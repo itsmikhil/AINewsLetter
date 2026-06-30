@@ -22,8 +22,9 @@ app.use(express.json());
 await connectDB();
 
 // Cron jobs now handled by render 
-// await startNewsletterCron();
-// await startArticleCron();
+// render cron automatically calls our protected end points to run pipeline
+// await startNewsletterCron(); api/newsletter/run
+// await startArticleCron(); api/article/fetch
 
 app.get("/", (req, res) => {
   res.send(`Server is listening at ${PORT}`);
