@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "https://ainewsletter-2ue5.onrender.com/api"
+    baseURL: "https://api.weeklybrief.in/api"
 });
 
 export default api;
