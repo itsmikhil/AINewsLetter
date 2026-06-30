@@ -57,9 +57,9 @@ function Hero() {
         <div className="mx-auto max-w-3xl text-center">
           <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-3 py-1.5 text-xs font-medium text-muted-foreground backdrop-blur">
             <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-            Issue 96 · Published Tuesday, June 23, 2026
+            This week's digest is live
           </span>
-          <h1 className="mt-7 font-display text-[2.6rem] font-semibold leading-[1.05] tracking-tight md:text-6xl">
+          <h1 className="mt-8 font-display text-[2.6rem] font-semibold leading-[1.05] tracking-tight md:text-6xl">
             AI Moves Fast.
             <br />
             <span className="text-muted-foreground">We Help You </span>

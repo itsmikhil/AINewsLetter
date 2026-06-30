@@ -14,14 +14,17 @@ dotenv.config();
 
 const app = express();
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
 
 await connectDB();
-await startNewsletterCron();
-await startArticleCron();
+
+// Cron jobs now handled by render 
+// await startNewsletterCron();
+// await startArticleCron();
+
 app.get("/", (req, res) => {
   res.send(`Server is listening at ${PORT}`);
 });
