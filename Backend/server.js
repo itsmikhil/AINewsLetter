@@ -21,13 +21,23 @@ app.use(express.json());
 
 await connectDB();
 
-// Cron jobs now handled by cronjob.org 
+// Cron jobs now handled by cronjob.org
 // cronjob.org automatically calls our protected end points to run pipeline
 // await startNewsletterCron(); api/newsletter/run
 // await startArticleCron(); api/article/fetch
 
 app.get("/", (req, res) => {
   res.send(`Server is listening at ${PORT}`);
+});
+
+app.get("/health", (req, res) => {
+  res.status(200).json({
+    status: "healthy",
+    service: "WeeklyBrief API",
+    timestamp: new Date().toISOString(),
+    uptime: Math.floor(process.uptime()),
+    environment: process.env.NODE_ENV || "development",
+  });
 });
 
 app.use("/api/article", articleRoute);
