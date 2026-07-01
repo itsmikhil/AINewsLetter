@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import newsletterModel from "../models/newsletter.js";
 import subscriberModel from "../models/subscriber.js";
 import { sendNewsletterEmail } from "../services/emailService.js";
-import { deliverLatestNewsletter } from "../services/newsletterService.js";
+import { deliverLatestNewsletter, generateWeeklyNewsletter } from "../services/newsletterService.js";
 
 export const getAllNewsletters = async (req, res) => {
   try {
