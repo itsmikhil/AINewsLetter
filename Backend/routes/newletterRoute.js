@@ -19,6 +19,6 @@ newsletterRouter.get("/:id", getNewsletterById);
 
 newsletterRouter.post("/send", sendLatestNewsletter);
 
-router.post("/run", verifyCronRequest, runNewsletterPipeline);
+newsletterRouter.post("/run", verifyCronRequest, runNewsletterPipeline);
 
 export default newsletterRouter;

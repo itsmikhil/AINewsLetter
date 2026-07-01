@@ -37,7 +37,6 @@ export const fetchAndStoreAllArticles=async()=>{
     let failed=0;
     let skipped=0; // because they are already stored
     for(const el of RSS_FEEDS){
-        console.log(el.source)
         try {
             const feed=await fetchRSSFeed(el.url)
 
