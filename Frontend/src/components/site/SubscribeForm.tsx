@@ -37,8 +37,8 @@ export function SubscribeForm({ variant = "default", size = "md" }: Props) {
   }
 
   const inputBase =
-    "w-full rounded-md border bg-background px-4 text-sm outline-none transition-colors placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/30";
-  const sizing = size === "lg" ? "h-12 text-[15px]" : "h-11";
+  "w-full rounded-md border bg-background px-4 text-base sm:text-sm outline-none transition-colors placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/30";
+  const sizing = size === "lg" ? "h-12 text-[15px]" : "h-12 sm:h-11";
   const borderTone = variant === "inverse" ? "border-border" : "border-border";
 
   return (
@@ -54,7 +54,7 @@ export function SubscribeForm({ variant = "default", size = "md" }: Props) {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="you@company.com"
-          className={`${inputBase} ${sizing} ${borderTone} flex-1`}
+          className={`${inputBase} ${sizing} ${borderTone} min-w-0 w-full sm:flex-1`}
         />
         <button
           type="submit"

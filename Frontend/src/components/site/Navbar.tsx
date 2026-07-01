@@ -33,9 +33,6 @@ export function Navbar() {
             <span className="font-display text-[15px] font-semibold tracking-tight text-foreground">
               Weekly Digest
             </span>
-            <span className="mt-0.5 text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-              Signal, not noise
-            </span>
           </span>
         </Link>
 

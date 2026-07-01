@@ -49,7 +49,7 @@ function ArticleDetailPage() {
     );
   }
 
-  const related = all?.filter((a) => a.id !== article.id).slice(0, 3) ?? [];
+  const related = all?.filter((a) => a._id !== article._id).slice(0, 3) ?? [];
 
   return (
     <>
@@ -71,7 +71,9 @@ function ArticleDetailPage() {
               {formatDate(article.publishedAt)}
             </time>
             <span className="text-muted-foreground">·</span>
-            <span className="font-mono text-xs text-muted-foreground">{article.category}</span>
+            <span className="font-mono text-xs text-muted-foreground">
+              {article.categories.join(" · ")}
+            </span>
           </div>
 
           <h1 className="mt-5 font-display text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
@@ -83,7 +85,7 @@ function ArticleDetailPage() {
           </p>
 
           <div className="mt-10 space-y-5 text-[17px] leading-[1.8] text-foreground/90">
-            <p>{article.body}</p>
+            <p>{article.description}</p>
             <p className="text-muted-foreground">
               This briefing is condensed from the original source. For complete technical detail,
               methodology, or context, follow the link below.
@@ -110,7 +112,7 @@ function ArticleDetailPage() {
             </h2>
             <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
               {related.map((a) => (
-                <ArticleCard key={a.id} article={a} />
+                <ArticleCard key={a._id} article={a} />
               ))}
             </div>
           </div>
