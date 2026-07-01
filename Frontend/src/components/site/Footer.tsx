@@ -14,8 +14,8 @@ export function Footer() {
             </span>
           </div>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
-            A weekly briefing on artificial intelligence. We read everything so
-            you can read what matters.
+            A weekly briefing on artificial intelligence. We read everything so you can read what
+            matters.
           </p>
         </div>
 
@@ -24,19 +24,62 @@ export function Footer() {
             Explore
           </h4>
           <ul className="mt-4 space-y-2.5 text-sm">
-            <li><Link to="/newsletters" className="text-foreground/90 hover:text-primary">Newsletter Archive</Link></li>
-            <li><Link to="/articles" className="text-foreground/90 hover:text-primary">Articles</Link></li>
-            <li><Link to="/" hash="subscribe" className="text-foreground/90 hover:text-primary">Subscribe</Link></li>
+            <li>
+              <Link to="/newsletters" className="text-foreground/90 hover:text-primary">
+                Newsletter Archive
+              </Link>
+            </li>
+            <li>
+              <Link to="/articles" className="text-foreground/90 hover:text-primary">
+                Articles
+              </Link>
+            </li>
+            <li>
+              <Link to="/" hash="subscribe" className="text-foreground/90 hover:text-primary">
+                Subscribe
+              </Link>
+            </li>
           </ul>
         </div>
 
         <div>
           <h4 className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
-            About
+            Connect
           </h4>
+
           <ul className="mt-4 space-y-2.5 text-sm">
-            <li><Link to="/" hash="about" className="text-foreground/90 hover:text-primary">Our approach</Link></li>
-            <li><Link to="/" hash="stats" className="text-foreground/90 hover:text-primary">By the numbers</Link></li>
+            <li>
+              <a
+                href="https://github.com/itsmikhil/AINewsLetter"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-foreground/90 hover:text-primary"
+              >
+                GitHub Repository
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="https://github.com/itsmikhil"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-foreground/90 hover:text-primary"
+              >
+                GitHub Profile
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="https://linkedin.com/in/mikhilailani"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-foreground/90 hover:text-primary"
+              >
+                LinkedIn
+              </a>
+            </li>
           </ul>
         </div>
       </div>
