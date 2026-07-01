@@ -57,7 +57,7 @@ function Hero() {
         <div className="mx-auto max-w-3xl text-center">
           <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-3 py-1.5 text-xs font-medium text-muted-foreground backdrop-blur">
             <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-            This week's digest is live
+              New newsletter every Sunday at 8:00 AM IST
           </span>
           <h1 className="mt-8 font-display text-[2.6rem] font-semibold leading-[1.05] tracking-tight md:text-6xl">
             AI Moves Fast.
@@ -97,7 +97,7 @@ function StatsSection() {
   const items = [
     { label: "Articles curated", value: data?.totalArticles, suffix: "+" },
     { label: "Weekly digests published", value: data?.totalNewsletters, suffix: "" },
-    { label: "Active subscribers", value: data?.totalSubscribers, suffix: "+" },
+    { label: "Active subscribers", value: data?.totalSubscribers, suffix: "" },
   ];
 
   return (
@@ -113,7 +113,7 @@ function StatsSection() {
             </h2>
           </div>
           <p className="hidden max-w-xs text-sm text-muted-foreground md:block">
-            We've been reading, filtering and explaining AI since 2024.
+            We've been reading, filtering and explaining AI since 2026.
           </p>
         </div>
         <div className="grid grid-cols-1 gap-px overflow-hidden rounded-xl border border-border bg-border md:grid-cols-3">
